@@ -80,7 +80,7 @@
         {
             "language": "markdown",
             "source": [
-                "# Future JavaScript Now\nOne of the main selling points of TypeScript is that it allows you to use a bunch of features from ES6 and beyond in current (ES3 and ES5 level) JavaScript engines (like current browsers and Node.js). Here we deep dive into why these features are useful followed by how these features are implemented in TypeScript."
+                "# Future JavaScript Now\n\nOne of the main selling points of TypeScript is that it allows you to use a bunch of features from ES6 and beyond in current (ES3 and ES5 level) JavaScript engines (like current browsers and Node.js). Here we deep dive into why these features are useful followed by how these features are implemented in TypeScript.\n"
             ],
             "outputs": []
         },
@@ -171,14 +171,14 @@
         {
             "language": "markdown",
             "source": [
-                "### Object Destructuring with rest\n"
+                "### Object Destructuring with rest ( not supported in this notebook)\n"
             ],
             "outputs": []
         },
         {
             "language": "typescript",
             "source": [
-                "const { ww, xx, ...remaining } = { ww: 1, xx: 2, yy: 3, zz: 4 };\nconsole.log(ww, xx, remaining); // 1, 2, {yy:3,zz:4}\n"
+                "const abc = { ww: 1, xx: 2, yy: 3, zz: 4 };\nconst { ww, xx, ...remaining } = abc;\nconsole.log(abc); // 1, 2, {yy:3,zz:4}\n"
             ],
             "outputs": []
         },
@@ -192,112 +192,154 @@
         {
             "language": "markdown",
             "source": [
-                "## Array Destructuring"
+                "## Array Destructuring ( not supported in this notebook)\n"
             ],
             "outputs": []
         },
         {
             "language": "typescript",
             "source": [
-                "const l = [1, 2, 3, 4, 5];\n\n// destructuring array\nconst [first, second, third, fourth, fifth] = l;\nconsole.log(first, second, third, fourth, fifth); // 1,2,3,4,5\n\n// destructuring array with rest\nconst [head, ...rest] = l;\nconsole.log(head, rest); // 1, [2,3,4,5]\n\n// ignore some values\nconst [, , , , last] = l;\nconsole.log(last); // 5"
+                "const l = [1, 2, 3, 4, 5];\n\n// destructuring array\nconst [first, second, third, fourth, fifth] = l;\nconsole.log(first, second, third, fourth, fifth); // 1,2,3,4,5\n\n// destructuring array with rest\nconst [head, ...rest] = l;\nconsole.log(head, rest); // 1, [2,3,4,5]\n\n// ignore some values\nconst [, , , , last] = l;\nconsole.log(last); // 5\n"
             ],
             "outputs": []
         },
         {
             "language": "markdown",
             "source": [
-                "# Spread Operator"
+                "# Spread Operator\n"
             ],
             "outputs": []
         },
         {
             "language": "markdown",
             "source": [
-                "## Spread in function calls"
+                "## Spread in function calls\n"
             ],
             "outputs": []
         },
         {
             "language": "typescript",
             "source": [
-                "function cat(x: number, y: number, z: number) { }\nconst args:[number,number,number] = [0, 1, 2];\ncat(...args);"
+                "function cat(x: number, y: number, z: number) {\n  console.log(x, y, z);\n}\nconst args: [number, number, number] = [0, 1, 2];\ncat(...args);\n"
             ],
             "outputs": []
         },
         {
             "language": "markdown",
             "source": [
-                "## Array Assignment"
+                "## Array Assignment\n"
             ],
             "outputs": []
         },
         {
             "language": "typescript",
             "source": [
-                "let myList = [1, 2];\n\nmyList = [...myList, 3, 4];\nconsole.log(myList); // [1,2,3,4]\n\nmyList = [0, ...myList];\nconsole.log(myList); // [0,1,2,3,4]"
+                "let myList = [1, 2];\n\nmyList = [...myList, 3, 4];\nconsole.log(myList); // [1,2,3,4]\n\nmyList = [0, ...myList];\nconsole.log(myList); // [0,1,2,3,4]\n"
             ],
             "outputs": []
         },
         {
             "language": "markdown",
             "source": [
-                "## Object spread"
+                "## Object spread\n"
             ],
             "outputs": []
         },
         {
             "language": "typescript",
             "source": [
-                "const point2 = {x: 1, y: 2};\n/** Create a new object by using all the point2D props along with z */\nconst point3 = {...point2, z: 3};"
+                "const point2 = { x: 1, y: 2 };\n/** Create a new object by using all the point2D props along with z */\nconst point3 = { ...point2, z: 3 };\n\nconsole.log(point3); // {x:1, y:2, z:3}\n"
             ],
             "outputs": []
         },
         {
             "language": "markdown",
             "source": [
-                "` what comes first is 'overridden' by what comes later`"
+                "` what comes first is 'overridden' by what comes later`\n"
             ],
             "outputs": []
         },
         {
             "language": "typescript",
             "source": [
-                "// @ts-nocheck\n\nconst anotherPoint2D = {x: 1, y: 2};\nconst anotherPoint3D = {x: 5, z: 4, ...anotherPoint2D};\nconsole.log(anotherPoint3D); // {x: 1, y: 2, z: 4}\nconst yetAnotherPoint3D = {...point2D, x: 5, z: 4}\nconsole.log(yetAnotherPoint3D); // {x: 5, y: 2, z: 4}"
+                "// @ts-nocheck\n\nconst anotherPoint2D = { x: 1, y: 2 };\nconst anotherPoint3D = { x: 5, z: 4, ...anotherPoint2D };\nconsole.log(anotherPoint3D); // {x: 1, y: 2, z: 4}\nconst yetAnotherPoint3D = { ...point2D, x: 5, z: 4 };\nconsole.log(yetAnotherPoint3D); // {x: 5, y: 2, z: 4}\n"
             ],
             "outputs": []
         },
         {
             "language": "typescript",
             "source": [
-                "//merge objects\n\nconst foo1 = {a: 1, b: 2, c: 0};\nconst bar1 = {c: 1, d: 2};\n/** Merge foo and bar */\nconst fooBar1 = {...foo1, ...bar1};\n// fooBar is now {a: 1, b: 2, c: 1, d: 2}\nconsole.log(fooBar1);"
+                "//merge objects\n\nconst foo1 = { a: 1, b: 2, c: 0 };\nconst bar1 = { c: 1, d: 2 };\n/** Merge foo and bar */\nconst fooBar1 = { ...foo1, ...bar1 };\n// fooBar is now {a: 1, b: 2, c: 1, d: 2}\nconsole.log(fooBar1);\n"
             ],
             "outputs": []
         },
         {
             "language": "markdown",
             "source": [
-                "# Promise (TODO)"
+                "# Promise\n\n<img src=\"image-3.png\" alt=\"Promise\" style=\"width: 800px;\"/>\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "const promiseFunction = () =>\n  new Promise<string>((resolve, reject) => {\n    console.log(\"Inside the Promise\");\n    if (Math.random() < 0.9) {\n      resolve(\"Hello, Promises!\");\n    }\n    reject(new Error(\"I fail.\"));\n  });\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "console.log(\"before promise\");\n\npromiseFunction()\n  .then((value) => console.log(value))\n  .catch((error) => console.log(error));\n\nconsole.log(\"i'm done\");\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "console.log(\"before promise\");\n\npromiseFunction()\n  .then((value) => console.log(value))\n  .then(() => console.log(\"i'm done\"))\n  .catch((error) => console.log(error));\n"
             ],
             "outputs": []
         },
         {
             "language": "markdown",
             "source": [
-                "# Async/Await (TODO)"
+                "# Async/Await\n\na way to tell the JavaScript runtime to **pause the executing of code** on the `await` keyword when used on a promise and **resume only once (and if) the promise returned from the function is settled**\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "async function myAsyncFunction() {\n  console.log(\"before promise\");\n\n  try {\n    const value = await promiseFunction();\n    console.log(value);\n  } catch (error) {\n    console.log(error);\n  }\n\n  console.log(\"i'm done\");\n}\n\nmyAsyncFunction();\n"
             ],
             "outputs": []
         },
         {
             "language": "markdown",
             "source": [
-                "# **Typescript**"
+                "# **Typescript**\n"
             ],
             "outputs": []
         },
         {
             "language": "markdown",
             "source": [
-                "# Basic Types (TODO)"
+                "![Alt text](image-4.png)\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# Basic Types\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "let isDone: boolean = true;\n\nlet decimal: number = 6;\n\nlet color: string = \"blue\";\n\n// Array\nlet numbers: number[] = [1, 2, 3, 4, 5];\n\n// Tuple\nlet person: [string, number] = [\"John Doe\", 30];\n\n// Object\nlet obj1: object = { key: \"value\" };\n\n// Any\nlet notSure: any = 4;\nnotSure = \"maybe a string instead\";\nnotSure = false;\n\n// Null and Undefined\nlet nullValue: null = null;\nlet undefinedValue: undefined = undefined;\n\n////////////////////////////////// not often used /////////////////////////////////\n\n// Enum (have some issues)\nenum Color {\n  Red,\n  Green,\n  Blue,\n}\n\nlet myColor: Color = Color.Green;\n\n// Void (no return value)\nfunction logMessage(): void {\n  console.log(\"This is a log message\");\n}\n\n// Never (function that never returns)\nfunction throwError(message: string): never {\n  throw new Error(message);\n}\n"
             ],
             "outputs": []
         },
@@ -325,14 +367,273 @@
         {
             "language": "typescript",
             "source": [
-                "interface Point2D {\n  x: number;\n  y: number;\n}\n\ninterface Point3D {\n  x: number;\n  y: number;\n  z: number;\n}\n\nfunction sumXY(point: Point2D) {\n  return point.x + point.y;\n}\n\nconst a: Point2D = {\n  x: 1,\n  y: 2,\n};\n\nconst b: Point3D = {\n  x: 9,\n  y: 8,\n  z: 7,\n};\n\nconsole.log(sumXY(a));\nconsole.log(sumXY(b));\n// console.log(sumXY({ x: 1 }));\n"
+                "interface Point2D {\n  x: number;\n  y: number;\n}\n\ninterface Point3D {\n  x: number;\n  y: number;\n  z: number;\n}\n\nfunction sumXY(point: Point2D) {\n  return point.x + point.y;\n}\n\nconst a: Point2D = {\n  x: 1,\n  y: 2,\n};\n\nconst b: Point3D = {\n  x: 9,\n  y: 8,\n  z: 7,\n};\n\nconsole.log(sumXY(a));\nconsole.log(sumXY(b));\nconsole.log(sumXY({ x: 1 }));\n"
             ],
             "outputs": []
         },
         {
             "language": "markdown",
             "source": [
-                "# Add more (TODO)"
+                "# Type Assertion\n\n`Assertion considered harmful`\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "interface Food {\n  bar: number;\n  bas: string;\n}\nvar food = {};\nfood.bar = 123;\nfood.bas = \"hello\";\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "var food2 = {} as Food;\nconst o = food2.bar;\nconsole.log(o);\n\nfood2.bar = 123;\nfood2.bas = \"hello\";\n\nconsole.log(food2);\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# Narrowing with Type Guard\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "function doSomething(x: number | string) {\n  if (typeof x === \"string\") {\n    // Within the block TypeScript knows that `x` must be a string\n    console.log(x.split(\", \"));\n  } else {\n    console.log(x + 3);\n  }\n\n  x.split(\", \");\n}\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "class Foo {\n  foo = 123;\n  common = \"123\";\n}\n\nclass Bar {\n  bar = 123;\n  common = \"123\";\n}\n\nfunction doStuff(arg: Foo | Bar) {\n  if (arg instanceof Foo) {\n    console.log(arg.foo);\n    console.log(arg.bar);\n  }\n  if (arg instanceof Bar) {\n    console.log(arg.foo);\n    console.log(arg.bar);\n  }\n\n  console.log(arg.common);\n  console.log(arg.foo);\n  console.log(arg.bar);\n}\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "type Foo2 = {\n  kind: \"foo\"; // Literal type\n  foo: number;\n};\ntype Bar2 = {\n  kind: \"bar\"; // Literal type\n  bar: number;\n};\n\nfunction doStuff2(arg: Foo2 | Bar2) {\n  if (arg.kind === \"foo\") {\n    console.log(arg.foo);\n    console.log(arg.bar);\n  } else {\n    // MUST BE Bar!\n    console.log(arg.foo);\n    console.log(arg.bar);\n  }\n}\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# Literal Types\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "type CardinalDirection = \"North\" | \"East\" | \"South\" | \"West\";\n\nfunction move(distance: number, direction: CardinalDirection) {\n  console.log(`Moving ${distance} miles to the ${direction}`);\n}\n\nmove(1, \"North\");\nmove(1, \"Nurth\");\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "type OneToFive = 1 | 2 | 3 | 4 | 5;\ntype MyBool = true | false;\n\ntype Omg = \"oh\" | \"my\" | \"god\" | 1 | 2 | 3 | 4 | 5 | true | false;\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# Readonly\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "function doAbc(config: { readonly ant: number; bas: number }) {\n  config.bar = 456;\n  config.bas = 789;\n\n  console.log(config);\n}\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "const config = {\n  ant: 123,\n  bas: 123,\n  cas: 123,\n};\n\nconfig.ant = 456;\n\nconst config2 = {\n  ant: 123,\n  bas: 123,\n  cas: 123,\n} as const;\n\nconfig2.ant = 456;\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# Creating Types from Types\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Generics\n\ntype that takes a type as a parameter\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "//generic type\ntype Animal<T> = {\n  name: string;\n  species: T;\n};\n\nlet lion: Animal<\"lion\"> = { name: \"lion\", species: \"lion\" };\n\n// multiple generic type arguments\ntype Pair<T, U> = {\n  first: T;\n  second: U;\n};\n\nconst pair: Pair<number, string> = { first: 1, second: \"2\" };\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "// generic function\nfunction firstElement<T>(arr: T[]): T {\n  return arr[0];\n}\n\n// explicitly set the value of T to be number\nconst s1 = firstElement<number>([1, 2, 3]);\nconsole.log(s1);\n\n// type argument inference\nconst s2 = firstElement([\"a\", \"b\", \"c\"]);\nconsole.log(s2);\n\n// type argument inference (inferred type is string | number)\nconst s3 = firstElement([1, \"a\", \"b\", \"c\"]);\nconsole.log(s3);\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Moving Types\n\nTypeScript's type system is extremely powerful and allows moving and slicing types in ways not possible in any other single language out there.\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "//Capturing the type of a variable\n\nlet coo = 123;\nlet nar: typeof coo; // `nar` has the same type as `coo` (here `number`)\nnar = 456;\nnar = \"789\";\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "//Capturing the type of a class member\n\nclass Foot {\n  foo: number; // some member whose type we want to capture\n}\n\nlet bard: Foot[\"foo\"]; // `bard` has type `number`\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "//Capturing Key Names\n\nlet abcd = {\n  a: 1,\n  b: 2,\n  c: 3,\n  d: 4,\n};\n\ntype SomeEnglish = keyof typeof abcd; // 'a' | 'b' | 'c' | 'd'\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "//Capturing Element Types\n\nlet myObj2: boolean[] = [true, false, true];\n\ntype MyType = (typeof myObj2)[number];\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Template Literal Types\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "type World = \"world\";\n\ntype Greeting = `hello ${World}`;\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "type Fruit = \"apple\" | \"orange\" | \"banana\" | \"pear\";\n\ntype FruitEaters = `eat ${Fruit}`;\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# Utility Types\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "#### `Partial<Type>` - Constructs a type with all properties of Type set to optional.\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "type Dog = {\n  name: string;\n  age: number;\n  say: () => void;\n};\n\ntype DogPartial = Partial<Dog>;\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "#### `Required<Type>` - Constructs a type consisting of all properties of Type set to required.\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "type Cat = {\n  name: string;\n  age: number;\n  say?: () => void;\n  eat?: () => void;\n};\n\ntype CatRequired = Required<Cat>;\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "#### `Readonly<Type>` - Constructs a type with all properties of Type set to readonly.\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "type Mouse = {\n  name: string;\n  age: number;\n};\n\ntype MouseReadOnly = Readonly<Mouse>;\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "#### `Record<Keys, Type>` - Constructs a type with a set of properties Keys of type Type.\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "type Person = {\n  name: string;\n  age: number;\n};\n\ntype PhoneBook = Record<string, Person>;\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "#### `Pick<Type, Keys>` - Constructs a type by picking the set of properties Keys from Type.\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "type Car = {\n  owner: Person;\n  age: number;\n  price: number;\n};\n\ntype NamePrice = Pick<Car, \"owner\" | \"price\">;\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "#### `Omit<Type, Keys>` - Constructs a type by picking all properties from Type and then removing Keys.\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "type House = {\n  owner: Person;\n  age: number;\n  price: number;\n};\n\ntype HouseWithoutAge = Omit<House, \"age\">;\n"
             ],
             "outputs": []
         }
