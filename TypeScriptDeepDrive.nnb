@@ -1,0 +1,340 @@
+{
+    "cells": [
+        {
+            "language": "markdown",
+            "source": [
+                "# Equality\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "// @ts-nocheck\n\nconsole.log(5 == \"5\"); // true\nconsole.log(5 === \"5\"); // false\n\nconsole.log(\"\" == \"0\"); // false\nconsole.log(0 == \"\"); // true\n\nconsole.log(\"\" === \"0\"); // false\nconsole.log(0 === \"\"); // false\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# Structural Equality\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "// If you want to compare two objects for structural equality == / === are not sufficient. e.g.\n\n// @ts-nocheck\n\nconsole.log({ a: 123 } == { a: 123 });\nconsole.log({ a: 123 } === { a: 123 });\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "//However, quite commonly you don't need deep checks and all you really need is to check by some id e.g.\n\ntype IdDisplay = {\n  id: string;\n  display: string;\n};\nconst list: IdDisplay[] = [\n  {\n    id: \"foo\",\n    display: \"Foo Select\",\n  },\n  {\n    id: \"bar\",\n    display: \"Bar Select\",\n  },\n];\n\nconst myObj = list.find((obj) => obj.id === \"foo\");\nconsole.log(myObj);\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# null vs undefined\n\n- Something hasn't been initialized : `undefined`\n- Something is currently unavailable: `null`\n\n**TypeScript team doesn't use null : TypeScript coding guidelines and it hasn't caused any problems.**\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "function myFunction(arg: string | null | undefined) {\n  console.log(arg);\n\n  if (arg != undefined) {\n    // use != not !==\n    // arg must be a string as `!=` rules out both null and undefined.\n    console.log(arg + \" is string\");\n  }\n}\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# Number\n\nJavaScript has only one number type. It is a double-precision 64-bit Number.\n\n![Alt text](image-1.png)\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "const numberA: number = 123;\nconst numberB: number = 4.56;\nconst numberC: number = Infinity;\nconst numberD: number = NaN;\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# Truthy and Falsy\n\n![Alt text](image-2.png)\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "console.log(Boolean(12));\nconsole.log(Boolean(null));\n\nconst myText = \"abcd\";\n\n// boolean in if statement\nif (myText) {\n  console.log(myText, \" is truthy\");\n} else {\n  console.log(myText, \" is falsy\");\n}\n\n// boolean in ternary operator\nconsole.log(myText, myText ? \" is truthy\" : \" is falsy\");\n\n// !! pattern\nconsole.log(!!myText);\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# Future JavaScript Now\nOne of the main selling points of TypeScript is that it allows you to use a bunch of features from ES6 and beyond in current (ES3 and ES5 level) JavaScript engines (like current browsers and Node.js). Here we deep dive into why these features are useful followed by how these features are implemented in TypeScript."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# Function\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "// simple function\nfunction Add1(a: number, b: number): number {\n  return a + b;\n}\n\n// function can assign to others variable\n// anonymous function\nconst Add2 = function (a: number, b: number): number {\n  return a + b;\n};\n\n// arrow function syntax\nconst Add3 = (a: number, b: number): number => {\n  return a + b;\n};\n\n// arrow function allow quick return\nconst Add4 = (a: number, b: number): number => a + b;\n\n// need () when quick return object\nconst Add5 = (a: number, b: number) => ({ one: a, two: b });\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# Rest Parameters\n\nRest parameters (denoted by `...argumentName` for the last argument) allow you to quickly accept multiple arguments in your function and get them as an array.\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "function combineText(name: string, ...texts: string[]) {\n  console.log(texts.length, \" input\");\n  console.log(`${name} : ${texts.join(\",\")}`);\n}\n\ncombineText(\"title\", \"a\", \"b\", \"c\", \"d\");\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# Destructuring\n\nTypeScript supports the following forms of Destructuring\n\n- Object Destructuring\n- Array Destructuring\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Object destructuring\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### normal\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "const rect = { x: 0, y: 10, width: 15, height: 20 };\n\n// Destructuring assignment\nlet { x, y, width, height } = rect;\nconsole.log(x, y, width, height); // 0,10,15,20\n\nrect.x = 10;\n({ x, y, width, height } = rect); // assign to existing variables using outer parentheses\nconsole.log(x, y, width, height); // 10,10,15,20\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### rename\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "// you can rename property when destructuring\n\n// structure\nconst obj = { foo: \"some value\" };\n\n// destructure\nconst { foo: zoo } = obj;\nconsole.log(zoo === \"some value\");\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### deep destructuring\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "const boo = { card: { id: 123 } };\nconst {\n  card: { id },\n} = boo;\n\nconsole.log(id);\n// console.log(card);\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### Object Destructuring with rest\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "const { ww, xx, ...remaining } = { ww: 1, xx: 2, yy: 3, zz: 4 };\nconsole.log(ww, xx, remaining); // 1, 2, {yy:3,zz:4}\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "// use of rest to remove extra properties\nconst point3D = { x: 1, y: 2, z: 3 };\nconst { z, ...point2D } = point3D;\nconsole.log(point2D); // {x:1, y:2}\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Array Destructuring"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "const l = [1, 2, 3, 4, 5];\n\n// destructuring array\nconst [first, second, third, fourth, fifth] = l;\nconsole.log(first, second, third, fourth, fifth); // 1,2,3,4,5\n\n// destructuring array with rest\nconst [head, ...rest] = l;\nconsole.log(head, rest); // 1, [2,3,4,5]\n\n// ignore some values\nconst [, , , , last] = l;\nconsole.log(last); // 5"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# Spread Operator"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Spread in function calls"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "function cat(x: number, y: number, z: number) { }\nconst args:[number,number,number] = [0, 1, 2];\ncat(...args);"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Array Assignment"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "let myList = [1, 2];\n\nmyList = [...myList, 3, 4];\nconsole.log(myList); // [1,2,3,4]\n\nmyList = [0, ...myList];\nconsole.log(myList); // [0,1,2,3,4]"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Object spread"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "const point2 = {x: 1, y: 2};\n/** Create a new object by using all the point2D props along with z */\nconst point3 = {...point2, z: 3};"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "` what comes first is 'overridden' by what comes later`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "// @ts-nocheck\n\nconst anotherPoint2D = {x: 1, y: 2};\nconst anotherPoint3D = {x: 5, z: 4, ...anotherPoint2D};\nconsole.log(anotherPoint3D); // {x: 1, y: 2, z: 4}\nconst yetAnotherPoint3D = {...point2D, x: 5, z: 4}\nconsole.log(yetAnotherPoint3D); // {x: 5, y: 2, z: 4}"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "//merge objects\n\nconst foo1 = {a: 1, b: 2, c: 0};\nconst bar1 = {c: 1, d: 2};\n/** Merge foo and bar */\nconst fooBar1 = {...foo1, ...bar1};\n// fooBar is now {a: 1, b: 2, c: 1, d: 2}\nconsole.log(fooBar1);"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# Promise (TODO)"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# Async/Await (TODO)"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# **Typescript**"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# Basic Types (TODO)"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# Implicit vs Explicit\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "// implicit\nlet foo = 123;\nfoo = 456;\nfoo = \"789\";\n\n// explicit\nlet bar: number = 123;\nlet baz: number = \"123\";\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# Types are structural\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "interface Point2D {\n  x: number;\n  y: number;\n}\n\ninterface Point3D {\n  x: number;\n  y: number;\n  z: number;\n}\n\nfunction sumXY(point: Point2D) {\n  return point.x + point.y;\n}\n\nconst a: Point2D = {\n  x: 1,\n  y: 2,\n};\n\nconst b: Point3D = {\n  x: 9,\n  y: 8,\n  z: 7,\n};\n\nconsole.log(sumXY(a));\nconsole.log(sumXY(b));\n// console.log(sumXY({ x: 1 }));\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# Add more (TODO)"
+            ],
+            "outputs": []
+        }
+    ]
+}
