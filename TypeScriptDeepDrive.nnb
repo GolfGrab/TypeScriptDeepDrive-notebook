@@ -12,7 +12,24 @@
             "source": [
                 "// @ts-nocheck\n\nconsole.log(5 == \"5\"); // true\nconsole.log(5 === \"5\"); // false\n\nconsole.log(\"\" == \"0\"); // false\nconsole.log(0 == \"\"); // true\n\nconsole.log(\"\" === \"0\"); // false\nconsole.log(0 === \"\"); // false\n"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "true",
+                                "false",
+                                "false",
+                                "true",
+                                "false",
+                                "false",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -180,7 +197,20 @@
             "source": [
                 "const { ww, xx, ...remaining } = { ww: 1, xx: 2, yy: 3, zz: 4 };\nconsole.log(ww, xx, remaining); // 1, 2, {yy:3,zz:4}\n"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.error",
+                            "value": {
+                                "name": "Error",
+                                "message": "Failed to generate code object, Cannot read properties of undefined (reading 'type')",
+                                "stack": ""
+                            }
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "typescript",
@@ -276,6 +306,38 @@
         {
             "language": "markdown",
             "source": [
+                "## Template Literals"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Template literals are string literals allowing embedded expressions. You can use multi-line strings and string interpolation features with them.\n\n```typescript\n`normal string with , ${<expression>} string`\n```"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "function pythagoras(a: number , b: number): number {\n  return Math.sqrt(a ** 2 + b ** 2);\n}\n\n`The length of the hypotenuse is: ${pythagoras(3, 4)}`"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "text/plain",
+                            "value": [
+                                "\u001b[32m'The length of the hypotenuse is: 5'\u001b[39m"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
                 "# Promise (TODO)"
             ],
             "outputs": []
@@ -283,9 +345,93 @@
         {
             "language": "markdown",
             "source": [
-                "# Async/Await (TODO)"
+                "Javascript is asynchronous operation, It doesn’t wait for operation in function complete."
             ],
             "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "function task(n: number, time: number): void {\n  setTimeout(() => {\n    console.log(`Task ${n}`)\n  }, time)\n}\n\ntask(1, 1000)\ntask(2, 2000)\ntask(3, 1000)"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Task 1",
+                                "Task 3",
+                                "Task 2",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Javascript has a Promise instance for solving asynchronous problem."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "function task_async(n: number, time: number): Promise<void> {\n  return new Promise((resolve, reject) => {\n    setTimeout(() => {\n      console.log(`Task ${n}`)\n      resolve()\n    }, time)\n  })\n}\n\ntask_async(1, 1000)\n  .then(() => task_async(2, 2000))\n  .then(() => task_async(3, 1000))"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Task 1",
+                                "Task 2",
+                                "Task 3",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# Async/Await"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "From above, Promise then will make code more complex, so new Javascript introduces async/await to solve this problem."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "async function task_main() {\n  // Await is used to wait for a promise to resolve\n  // Await must be used inside an async function\n  await task_async(1, 1000)\n  await task_async(2, 2000)\n  await task_async(3, 1000)\n}\n\ntask_main()"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Task 1",
+                                "Task 2",
+                                "Task 3",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
