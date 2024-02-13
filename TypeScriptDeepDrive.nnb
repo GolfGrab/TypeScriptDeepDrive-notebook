@@ -3,7 +3,14 @@
         {
             "language": "markdown",
             "source": [
-                "# Equality\n"
+                "# Basic JS (TS)"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Equality\n"
             ],
             "outputs": []
         },
@@ -17,7 +24,7 @@
         {
             "language": "markdown",
             "source": [
-                "# Structural Equality\n"
+                "## Structural Equality\n"
             ],
             "outputs": []
         },
@@ -38,7 +45,7 @@
         {
             "language": "markdown",
             "source": [
-                "# null vs undefined\n\n- Something hasn't been initialized : `undefined`\n- Something is currently unavailable: `null`\n\n**TypeScript team doesn't use null : TypeScript coding guidelines and it hasn't caused any problems.**\n"
+                "## null vs undefined\n\n- Something hasn't been initialized : `undefined`\n- Something is currently unavailable: `null`\n\n**TypeScript team doesn't use null : TypeScript coding guidelines and it hasn't caused any problems.**\n"
             ],
             "outputs": []
         },
@@ -52,7 +59,7 @@
         {
             "language": "markdown",
             "source": [
-                "# Number\n\nJavaScript has only one number type. It is a double-precision 64-bit Number.\n\n![Alt text](image-1.png)\n"
+                "## Number\n\nJavaScript has only one number type. It is a double-precision 64-bit Number.\n\n![Alt text](image-1.png)\n"
             ],
             "outputs": []
         },
@@ -66,7 +73,7 @@
         {
             "language": "markdown",
             "source": [
-                "# Truthy and Falsy\n\n![Alt text](image-2.png)\n"
+                "## Truthy and Falsy\n\n![Alt text](image-2.png)\n"
             ],
             "outputs": []
         },
@@ -80,14 +87,14 @@
         {
             "language": "markdown",
             "source": [
-                "# Future JavaScript Now\n\nOne of the main selling points of TypeScript is that it allows you to use a bunch of features from ES6 and beyond in current (ES3 and ES5 level) JavaScript engines (like current browsers and Node.js). Here we deep dive into why these features are useful followed by how these features are implemented in TypeScript.\n"
+                "## Future JavaScript Now\n\nOne of the main selling points of TypeScript is that it allows you to use a bunch of features from ES6 and beyond in current (ES3 and ES5 level) JavaScript engines (like current browsers and Node.js). Here we deep dive into why these features are useful followed by how these features are implemented in TypeScript.\n"
             ],
             "outputs": []
         },
         {
             "language": "markdown",
             "source": [
-                "# Function\n"
+                "## Function\n"
             ],
             "outputs": []
         },
@@ -101,7 +108,7 @@
         {
             "language": "markdown",
             "source": [
-                "# Rest Parameters\n\nRest parameters (denoted by `...argumentName` for the last argument) allow you to quickly accept multiple arguments in your function and get them as an array.\n"
+                "## Rest Parameters\n\nRest parameters (denoted by `...argumentName` for the last argument) allow you to quickly accept multiple arguments in your function and get them as an array.\n"
             ],
             "outputs": []
         },
@@ -276,6 +283,48 @@
         {
             "language": "markdown",
             "source": [
+                "## Array Method"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "// map method`\nconst mapArr=[1,2,3];\nfunction tmpFunction(item: number, ind: number) {\n  return {\"index\":ind,\"value\":item};\n}\nconst mapArr2=mapArr.map(tmpFunction);\n\n// map method: arrow function\nconst mapArr3=mapArr.map((item,ind) => ({\"index\":ind,\"value\":item}))\n\nconsole.log(mapArr2);\n// console.log(fooArr3);"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "// filter method\n// example: filter even numbers\nconst filterArr=[1,2,3,4,5,6,7,8,9,10];\nfunction filterFunction(item: number) {\n  return item%2==0; \n}\nconst filterArr2=filterArr.filter(filterFunction);\n\n// filter method: arrow function\nconst filterArr3=filterArr.filter(item => item%2==0);\n\nconsole.log(filterArr2);\n// console.log(filterArr3);\n\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "// Reduce method\n// example: sum of all elements\nconst reduceArr=[1,2,3,4,5];\nfunction reduceFunction(total: number, item: number) {\n  return total + item;\n}\nconst reduceArr2=reduceArr.reduce(reduceFunction,0); // 0 is initial value of total\n\n// Reduce method: arrow function\nconst reduceArr3=reduceArr.reduce((total, item) => total + item,0);\n\nconsole.log(reduceArr2);\n// console.log(reduceArr3);"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "// every and some method\n// example: check if all elements are even\nconst everyArr=[2,4,6,8,10];\nconst isEveryEven=everyArr.every(item => item%2==0);\nconsole.log(isEveryEven);\n\n// example: check if any element is even\nconst someArr=[1,3,5,6];\nconst isSomeEven=someArr.some(item => item%2==0);\nconsole.log(isSomeEven);"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
                 "# Promise\n\n<img src=\"image-3.png\" alt=\"Promise\" style=\"width: 800px;\"/>\n"
             ],
             "outputs": []
@@ -318,21 +367,14 @@
         {
             "language": "markdown",
             "source": [
-                "# **Typescript**\n"
+                "# **Typescript**\n![Alt text](image-4.png)"
             ],
             "outputs": []
         },
         {
             "language": "markdown",
             "source": [
-                "![Alt text](image-4.png)\n"
-            ],
-            "outputs": []
-        },
-        {
-            "language": "markdown",
-            "source": [
-                "# Basic Types\n"
+                "## Basic Types\n"
             ],
             "outputs": []
         },
@@ -346,7 +388,7 @@
         {
             "language": "markdown",
             "source": [
-                "# Implicit vs Explicit\n"
+                "## Implicit vs Explicit\n"
             ],
             "outputs": []
         },
@@ -360,7 +402,7 @@
         {
             "language": "markdown",
             "source": [
-                "# Types are structural\n"
+                "## Types are structural\n"
             ],
             "outputs": []
         },
@@ -374,7 +416,7 @@
         {
             "language": "markdown",
             "source": [
-                "# Type Assertion\n\n`Assertion considered harmful`\n"
+                "## Type Assertion\n\n`Assertion considered harmful`\n"
             ],
             "outputs": []
         },
@@ -395,7 +437,7 @@
         {
             "language": "markdown",
             "source": [
-                "# Narrowing with Type Guard\n"
+                "## Narrowing with Type Guard\n"
             ],
             "outputs": []
         },
@@ -423,7 +465,7 @@
         {
             "language": "markdown",
             "source": [
-                "# Literal Types\n"
+                "## Literal Types\n"
             ],
             "outputs": []
         },
@@ -444,7 +486,7 @@
         {
             "language": "markdown",
             "source": [
-                "# Readonly\n"
+                "## Readonly\n"
             ],
             "outputs": []
         },
